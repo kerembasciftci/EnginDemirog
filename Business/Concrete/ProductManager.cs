@@ -18,12 +18,12 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         private readonly IProductDal _productDal;
-        private readonly ICategoryService _categoryService;
+        //private readonly ICategoryService _categoryService;
 
         public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
-            _categoryService = categoryService;
+            //_categoryService = categoryService;
 
         }
 
@@ -33,7 +33,7 @@ namespace Business.Concrete
             //Aynı isimde ürün eklenemez
             //Eğer mevcut kategori sayısı 15'i geçtiyse sisteme yeni ürün eklenemez. ve 
             IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName),
-                CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfCategoryLimitExceded());
+                CheckIfProductCountOfCategoryCorrect(product.CategoryId));
 
             if (result != null)
             {
@@ -74,10 +74,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(data, "basarili");
         }
 
-        public IDataResult<List<ProductDto>> GetProductDetails()
-        {
-            return new SuccessDataResult<List<ProductDto>>(_productDal.GetProductDetails());
-        }
+        //public IDataResult<List<ProductDto>> GetProductDetails()
+        //{
+        //    return new SuccessDataResult<List<ProductDto>>(_productDal.GetProductDetails());
+        //}
 
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
@@ -100,15 +100,15 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        private IResult CheckIfCategoryLimitExceded()
-        {
-            var result = _categoryService.GetAll();
-            if (result.Data.Count > 15)
-            {
-                return new ErrorResult(Messages.CategoryLimitExceded);
-            }
+        //private IResult CheckIfCategoryLimitExceded()
+        //{
+        //    var result = _categoryService.GetAll();
+        //    if (result.Data.Count > 15)
+        //    {
+        //        return new ErrorResult(Messages.CategoryLimitExceded);
+        //    }
 
-            return new SuccessResult();
-        }
+        //    return new SuccessResult();
+        //}
     }
 }
