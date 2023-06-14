@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
-    public interface EfGenericRepository<T>
+    public interface IGenericRepository<T>
     {
         void Add(T entity);
         void Update(T entity);  

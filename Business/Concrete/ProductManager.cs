@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -27,6 +28,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -42,11 +44,7 @@ namespace Business.Concrete
 
             _productDal.Add(product);
 
-            return new SuccessResult(Messages.ProductAdded);
-
-
-
-            //23:10 Dersteyiz
+            return new SuccessResult(Messages.ProductAdded);            
         }
 
 

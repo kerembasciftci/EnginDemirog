@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal:EfGenericRepository<Product>
+    public interface IProductDal:IGenericRepository<Product>
     {
         List<ProductDto> GetProductDetails();
     }

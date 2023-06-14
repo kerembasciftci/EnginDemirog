@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess.EntityFramework
 {
-    public class EfGenericRepository<TEntity, TContext> : EfGenericRepository<TEntity>
+    public class EfGenericRepository<TEntity, TContext> : IGenericRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {

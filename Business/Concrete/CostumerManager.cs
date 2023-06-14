@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-      public class CostumerManager:ICostumerService
+    public class CostumerManager : ICostumerService
     {
     }
 }
